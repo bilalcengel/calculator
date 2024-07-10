@@ -1,9 +1,9 @@
 
 let math_it_up = {
-    '+': function (x, y) { return parseInt(x) + parseInt(y) },
-    '-': function (x, y) { return parseInt(x) - parseInt(y) },
-    '*': function (x, y) { return parseInt(x) * parseInt(y) },
-    '/': function (x, y) { return parseInt(x) / parseInt(y) }
+    '+': function (x, y) { return parseFloat(x) + parseFloat(y) },
+    '-': function (x, y) { return parseFloat(x) - parseFloat(y) },
+    '*': function (x, y) { return parseFloat(x) * parseFloat(y) },
+    '/': function (x, y) { return parseFloat(x) / parseFloat(y) }
 }
 let numberPushArr = document.querySelectorAll(".num");
 let screenContent = document.querySelector(".screen")
@@ -32,4 +32,27 @@ operatorPushArr.forEach(element => {
         }
     });    
 });
+let equalOperator =  document.querySelector(".equal")
+    equalOperator.addEventListener("click" ,() => {
+        let upCont = upperScreenContent.textContent;
+        let length = upCont.length;
+        screenContent.textContent=math_it_up[upCont.slice(length-1,length)](upperScreenContent.textContent,screenContent.textContent)
+        upperScreenContent.textContent= ""
 
+    })
+let dot = document.querySelector(".dot")
+    dot.addEventListener("click", ()=>{
+        if(!screenContent.textContent.includes("."))
+            screenContent.textContent=screenContent.textContent+"."
+        })
+let ac = document.querySelector(".AC")
+        ac.addEventListener("click", () => {
+            upperScreenContent.textContent = "";
+            screenContent.textContent = "";
+        })
+let del = document.querySelector(".delete")
+        del.addEventListener("click", () => {
+            let length=screenContent.textContent;
+            length=length.length;
+            screenContent.textContent = screenContent.textContent.slice(0,length-1);
+        })       
