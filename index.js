@@ -10,7 +10,12 @@ let screenContent = document.querySelector(".screen")
 let upperScreenContent = document.querySelector(".upperScreen")
 numberPushArr.forEach(element => {
     element.addEventListener("click" ,() => {
-        screenContent.textContent+=element.textContent;
+        if(screenContent.textContent === "" && !upperScreenContent.textContent.match(/[^\d]/)){
+            
+            upperScreenContent.textContent ="";
+            screenContent.textContent+=element.textContent;
+        }else
+            screenContent.textContent+=element.textContent;
         
     });    
 });
@@ -20,10 +25,13 @@ operatorPushArr.forEach(element => {
         if(upperScreenContent.textContent === ""){
         upperScreenContent.textContent=screenContent.textContent+element.textContent;
         screenContent.textContent="";
-        }else if(screenContent.textContent === ""){
+        }else if(screenContent.textContent === "" && !!upperScreenContent.textContent.match(/[^\d]/)){
             let upCont = upperScreenContent.textContent;
             let length = upCont.length;
             upperScreenContent.textContent = upCont.slice(0,length-1)+element.textContent;
+        }else if(screenContent.textContent === "" && !upperScreenContent.textContent.match(/[^\d]/)){
+            
+            upperScreenContent.textContent += element.textContent;
         }else{
             let upCont = upperScreenContent.textContent;
             let length = upCont.length;
@@ -36,9 +44,8 @@ let equalOperator =  document.querySelector(".equal")
     equalOperator.addEventListener("click" ,() => {
         let upCont = upperScreenContent.textContent;
         let length = upCont.length;
-        screenContent.textContent=math_it_up[upCont.slice(length-1,length)](upperScreenContent.textContent,screenContent.textContent)
-        upperScreenContent.textContent= ""
-
+        upperScreenContent.textContent=math_it_up[upCont.slice(length-1,length)](upperScreenContent.textContent,screenContent.textContent)
+        screenContent.textContent= ""
     })
 let dot = document.querySelector(".dot")
     dot.addEventListener("click", ()=>{
