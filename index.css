@@ -1,0 +1,41 @@
+div{
+  display: flex;
+  width: 120px;
+}
+.keypad{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: grey;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+}
+button{
+   display: flex;
+   flex: 1;
+   margin: 1px;
+   justify-content: center;
+   align-items: center;
+   background-color: white;
+   border-radius: 10px;
+}
+.AC{
+    background-color: red;
+}
+.display{
+    background-color: grey;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom: black solid 1px;
+    height: 30px;
+}
+.screen{
+    margin: 5px;
+    background-color: white;
+    border-radius: 3px;
+    padding: 3px;
+    justify-content: right;
+    align-items: center;
+}
